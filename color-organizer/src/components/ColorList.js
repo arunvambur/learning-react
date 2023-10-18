@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Color from "./Color";
 import { useColors } from "../hooks/color-hook";
+import { css } from "@emotion/css";
 
 export default function ColorList() {
   const { colors } = useColors();
@@ -8,12 +9,14 @@ export default function ColorList() {
   if (!colors.length) return <div>No Colors Listed. (Add a Color)</div>;
 
   return (
-    <div className="color-list">
+    <div
+      className={css`
+        display: flex;
+        flex-wrap: wrap;
+      `}
+    >
       {colors.map((color) => (
-        <Color
-          key={color.id}
-          {...color}
-        />
+        <Color key={color.id} {...color} />
       ))}
     </div>
   );
